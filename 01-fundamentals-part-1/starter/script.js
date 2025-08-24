@@ -252,25 +252,25 @@
 
 //Exercise 1: Conversion Detective
 
-console.log(5 === "5"); //false
-console.log(5 == "5"); //true
-console.log(true === 1); //false
-console.log(true == 1); //true
-console.log(false === 0); //false
-console.log(false == 0); //true
+// console.log(5 === "5"); //false
+// console.log(5 == "5"); //true
+// console.log(true === 1); //false
+// console.log(true == 1); //true
+// console.log(false === 0); //false
+// console.log(false == 0); //true
 
-//Exercise 2: Fix the Login System
+// //Exercise 2: Fix the Login System
 
-// This login system has bugs - fix them!
-const username = prompt("Username:");
-const password = prompt("Password:");
+// // This login system has bugs - fix them!
+// const username = prompt("Username:");
+// const password = prompt("Password:");
 
-// Fix using strict equality
-if (username === "admin" && password === "1234") {
-  console.log("Welcome admin!");
-} else {
-  console.log("Access denied");
-}
+// // Fix using strict equality
+// if (username === "admin" && password === "1234") {
+//   console.log("Welcome admin!");
+// } else {
+//   console.log("Access denied");
+// }
 
 
 
@@ -311,30 +311,53 @@ if (username === "admin" && password === "1234") {
 // Create a club entry system with these rules:
 // Entry allowed if: (age >= 21 AND hasID) OR isVIP
 
-const age = 19; // Try different values
-const hasID = true; // Try different values
-const isVIP = false; // Try different values
+// const age = 19; // Try different values
+// const hasID = true; // Try different values
+// const isVIP = false; // Try different values
 
-// Your logic here:
-if ((age >= 21 && hasID) || isVIP) {
-  console.log('Welcome to the club!');
+// // Your logic here:
+// if ((age >= 21 && hasID) || isVIP) {
+//   console.log('Welcome to the club!');
+// } else {
+//   console.log('Sorry, you cannot enter');
+// }
+
+// //Exercise 2: Weather Advisory
+// const temperature = 25; // Celsius
+// const isRaining = false;
+// const isWindy = true;
+
+// if (temperature >= 20 && temperature <= 30 && !isRaining && !isWindy) {
+//   console.log("It's a perfect day! Go out and enjoy!");
+// } else if (temperature >= 15 && temperature <= 35 && !isRaining) {
+//   console.log("It's a good day! You can go outside, just be mindful of the wind.");
+// } else {
+//   console.log("Better stay inside today.");
+// }
+
+////////////////////////////////////////////////////////
+
+//Ternary Operator 
+
+const age = 20
+
+const drink = age >= 18 ? 'wine' : 'water';
+console.log(drink);
+
+let drink2;
+if (age >= 18) {
+  drink2 = 'wine';
 } else {
-  console.log('Sorry, you cannot enter');
+  drink2 = 'water';
 }
+console.log(drink2);
 
-//Exercise 2: Weather Advisory
-const temperature = 25; // Celsius
-const isRaining = false;
-const isWindy = true;
+console.log(`I like to drink some ${age >= 18 ? "wine" : "water"}`);
 
-if (temperature >= 20 && temperature <= 30 && !isRaining && !isWindy) {
-  console.log("It's a perfect day! Go out and enjoy!");
-} else if (temperature >= 15 && temperature <= 35 && !isRaining) {
-  console.log("It's a good day! You can go outside, just be mindful of the wind.");
-} else {
-  console.log("Better stay inside today.");
-}
+const bill = 430;
 
+const tip = (bill >= 50 && bill <= 300) ? bill * 0.15 : bill * 0.20;
 
-
+console.log(
+  `The bill was ${bill}, the tip was ${tip}, and the total value ${bill + tip}`);
 
