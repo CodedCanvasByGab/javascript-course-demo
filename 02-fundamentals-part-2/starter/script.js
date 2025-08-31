@@ -389,58 +389,157 @@
 
 //Coding Challenge #3: User Profile Sysrtem
 
-const user = {
-  firstName: "Sarah",
-  lastName: "Johnson",
-  birthYear: 1995,
-  location: "New York",
-  interests: ["photography", "travel", "coding"],
-  friends: [
-    { name: "Michael", status: "active" },
-    { name: "Emma", status: "inactive" },
-    { name: "David", status: "active" },
-  ],
-  isActive: true,
+// const user = {
+//   firstName: "Sarah",
+//   lastName: "Johnson",
+//   birthYear: 1995,
+//   location: "New York",
+//   interests: ["photography", "travel", "coding"],
+//   friends: [
+//     { name: "Michael", status: "active" },
+//     { name: "Emma", status: "inactive" },
+//     { name: "David", status: "active" },
+//   ],
+//   isActive: true,
 
-  // Calculate age method
-  calcAge: function () {
-    this.age = new Date().getFullYear() - this.birthYear;
-    return this.age;
-  },
+//   // Calculate age method
+//   calcAge: function () {
+//     this.age = new Date().getFullYear() - this.birthYear;
+//     return this.age;
+//   },
 
-  // Add friend method
-  addFriend: function (name, status = "active") {
-    this.friends.push({ name, status });
-    return this.friends.length;
-  },
+//   // Add friend method
+//   addFriend: function (name, status = "active") {
+//     this.friends.push({ name, status });
+//     return this.friends.length;
+//   },
 
-  // Get active friends count
-  getActiveFriends: function () {
-    const activeFriends = this.friends.filter(friend => friend.status === "active");
-    return activeFriends.length;
-  },
+//   // Get active friends count
+//   getActiveFriends: function () {
+//     const activeFriends = this.friends.filter(friend => friend.status === "active");
+//     return activeFriends.length;
+//   },
 
-  // Toggle active status
-  toggleStatus: function () {
-    this.isActive = !this.isActive;
-    return this.isActive;
-  },
+//   // Toggle active status
+//   toggleStatus: function () {
+//     this.isActive = !this.isActive;
+//     return this.isActive;
+//   },
 
-  // Generate profile summary
-  getSummary: function () {
-    const age = this.calcAge();
-    const activeFriends = this.getActiveFriends();
-    const status = this.isActive ? "active" : "away";
+//   // Generate profile summary
+//   getSummary: function () {
+//     const age = this.calcAge();
+//     const activeFriends = this.getActiveFriends();
+//     const status = this.isActive ? "active" : "away";
 
-    return `${this.firstName} ${this.lastName} (${age}) from ${this.location} is currently ${status}.
-Has ${activeFriends} active friends out of ${this.friends.length} total.
-Interests include: ${this.interests.join(", ")} — connected and sharing life's adventures.`;
+//     return `${this.firstName} ${this.lastName} (${age}) from ${this.location} is currently ${status}.
+// Has ${activeFriends} active friends out of ${this.friends.length} total.
+// Interests include: ${this.interests.join(", ")} — connected and sharing life's adventures.`;
+//   }
+// };
+
+// // Test your user profile system
+// console.log(user.getSummary());
+// user.addFriend("Alex", "active");
+// user.toggleStatus();
+// console.log(`\nAfter updates:`);
+// console.log(user.getSummary());
+
+////////////////////////////////
+
+//1st method
+//Query Selector - uses class selector
+
+// const message = document.querySelector(".message");
+
+// console.log(message);
+
+// const button = document.querySelector("#btn");
+// console.log(button);
+
+// const heading = document.querySelector("h1");
+// console.log(document);
+
+// console.log(message.textContent);
+// console.log(button.id);
+// console.log(heading.tagName);
+// console.log(heading.textContent);
+
+// //getElementByID
+
+// const buttonByID = document.getElementById("btn");
+// console.log(buttonByID);
+// console.log(buttonByID === button);
+
+// //querySelector = multiple elements
+// const allParagraphs = document.querySelectorAll("p");
+// console.log(allParagraphs);
+// console.log(allParagraphs[0]);
+
+////////////////////////////////////////////////
+//Modifying element content
+
+// Select DOM elements
+const message = document.querySelector(".message");
+const input = document.querySelector(".guess");
+const heading = document.querySelector("h1");
+const button = document.querySelector("#btn");
+
+// Initial message updates
+console.log(message.textContent);
+message.textContent = "Hello from JavaScript";
+console.log(message.textContent);
+
+// innerHTML
+message.innerHTML = "<strong>Bold text from JS!</strong>";
+
+// innerText
+console.log(message.innerText);
+
+// Input element setup
+console.log(input.value);
+input.value = "Default text";
+input.placeholder = "Type here";
+
+// Style the heading
+heading.style.color = "gold";
+heading.style.backgroundColor = "blue";
+heading.style.fontSize = "3rem";
+heading.style.padding = "20px";
+heading.style.borderRadius = "10px";
+
+// Style the button
+button.style.padding = "20px";
+button.style.borderRadius = "10px";
+
+// Button click event — update message
+button.addEventListener("click", function () {
+  console.log("Button was clicked");
+  message.textContent = "You clicked the button";
+  message.style.color = "green";
+});
+
+// Button click event — count clicks and change color
+let clickedCount = 0;
+button.addEventListener("click", function () {
+  clickedCount++;
+  button.textContent = `Clicked ${clickedCount} times`;
+  button.style.backgroundColor = `hsl(${clickedCount * 30}, 70%, 50%)`;
+});
+
+// Input event — live typing feedback
+input.addEventListener("input", function () {
+  const userText = input.value;
+  message.textContent = `You typed: ${userText}`;
+  message.style.fontSize = `${Math.max(userText.length * 5, 16)}px`; // Prevent font from shrinking too much
+});
+
+// Keyboard event — respond to Enter key
+input.addEventListener("keydown", function (event) {
+  console.log(`Key Pressed: ${event.key}`);
+
+  if (event.key === "Enter") {
+    message.textContent = `You pressed Enter! Text was: ${input.value}`;
+    input.value = "";
   }
-};
-
-// Test your user profile system
-console.log(user.getSummary());
-user.addFriend("Alex", "active");
-user.toggleStatus();
-console.log(`\nAfter updates:`);
-console.log(user.getSummary());
+});
