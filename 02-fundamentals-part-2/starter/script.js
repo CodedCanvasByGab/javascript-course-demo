@@ -229,62 +229,218 @@
 ////////////////////////////////////
 // Coding Challenge #2 - Student Grade Manager
 
-const grades = [78, 85, 92, 67, 88, 95, 73, 82];
+// const grades = [78, 85, 92, 67, 88, 95, 73, 82];
 
-// Function to calculate average
-function calculateAverage(grades) {
-    let sum = 0;
-    for (let i = 0; i < grades.length; i++) {
-        sum += grades[i];
-    }
-    return sum / grades.length;
-}
+// // Function to calculate average
+// function calculateAverage(grades) {
+//     let sum = 0;
+//     for (let i = 0; i < grades.length; i++) {
+//         sum += grades[i];
+//     }
+//     return sum / grades.length;
+// }
 
-// Function to find highest grade
-function findHighestGrade(grades) {
-  // Your code here
-  // Hint: Start with first grade, compare with each subsequent grade
-  let highest = grades[0];
-  for (let i = 0; i < grades.length; i++) {
-    if(grades[i] > highest){
-        highest = grades[i];
-    }
-  } return highest;
-}
+// // Function to find highest grade
+// function findHighestGrade(grades) {
+//   // Your code here
+//   // Hint: Start with first grade, compare with each subsequent grade
+//   let highest = grades[0];
+//   for (let i = 0; i < grades.length; i++) {
+//     if(grades[i] > highest){
+//         highest = grades[i];
+//     }
+//   } return highest;
+// }
 
-// Function to find lowest grade
-function findLowestGrade(grades) {
-  // Your code here
-  // Hint: Similar to highest, but use < comparison
-  let lowest = grades[0];
-  for (let i = 0; i < grades.length; i++) {
-    if (grades[i] < lowest) {
-        lowest = grades[i]
-    }    
-  } return lowest;
-}
+// // Function to find lowest grade
+// function findLowestGrade(grades) {
+//   // Your code here
+//   // Hint: Similar to highest, but use < comparison
+//   let lowest = grades[0];
+//   for (let i = 0; i < grades.length; i++) {
+//     if (grades[i] < lowest) {
+//         lowest = grades[i]
+//     }    
+//   } return lowest;
+// }
 
-// Function to count passing students
-function countPassing(grades, passingGrade) {
-  // Your code here
-  // Hint: Counter pattern - increment when condition is met
-  let count = 0;
-  for (let i = 0; i < grades.length; i++) {
-    if (grades[i] >= passingGrade) {
-        count++;
-    }    
-  } return count;
-}
+// // Function to count passing students
+// function countPassing(grades, passingGrade) {
+//   // Your code here
+//   // Hint: Counter pattern - increment when condition is met
+//   let count = 0;
+//   for (let i = 0; i < grades.length; i++) {
+//     if (grades[i] >= passingGrade) {
+//         count++;
+//     }    
+//   } return count;
+// }
 
-// Generate complete report
-const average = calculateAverage(grades);
-const highest = findHighestGrade(grades);
-const lowest = findLowestGrade(grades);
-const passing = countPassing(grades, 70);
+// // Generate complete report
+// const average = calculateAverage(grades);
+// const highest = findHighestGrade(grades);
+// const lowest = findLowestGrade(grades);
+// const passing = countPassing(grades, 70);
 
-console.log("=== GRADE REPORT ===");
-console.log(`Average: ${average.toFixed(2)}`);
-console.log(`Highest: ${highest}`);
-console.log(`Lowest: ${lowest}`);
-console.log(`Passing students: ${passing} out of ${grades.length}`);
+// console.log("=== GRADE REPORT ===");
+// console.log(`Average: ${average.toFixed(2)}`);
+// console.log(`Highest: ${highest}`);
+// console.log(`Lowest: ${lowest}`);
+// console.log(`Passing students: ${passing} out of ${grades.length}`);
 
+//////////////////////////////////////////////////////////////
+// Objects and Data Strcutres
+
+// const lheeObject = {
+//   firstName: 'Lhee',
+//   lastName: 'Hosena',
+//   age: 2025 - 2004,
+//   job: 'student',
+//   friends: ( "Michael", "Peter", "Steven"),
+// };
+
+// console.log(lheeObject);
+
+// //Property Access Methods
+// //Dot Notation
+
+// console.log(lheeObject.firstName);
+// console.log(lheeObject.lastName);
+// console.log(lheeObject.age);
+
+// //Bracket Notation
+// console.log(lheeObject["firstName"]);
+// console.log(lheeObject["lastName"]);
+// console.log(lheeObject["age"]);
+
+// const nameKey = "Name";
+// console.log(lheeObject["first" + nameKey]);
+// console.log(lheeObject["last" + nameKey]);
+
+// // Modifying Existing Properties
+// lheeObject.job = 'Programmer';
+// lheeObject["age"] = 30;
+// console.log(lheeObject);
+
+// //add new properties
+// lheeObject.location = "Philippines";
+// lheeObject['Twitter'] = "LheeProgrammer";
+// lheeObject.hasDriversLicense = true;
+// console.log(lheeObject);
+
+// //when to use dot vs bracket
+// const property = "job";
+// console.log(lheeObject[property]);
+
+// //objects can combine arrays, arrays can contain objects
+
+// const student = {
+//   name: 'Sarah',
+//   grades: [85, 92, 78],
+//   adress: {
+//     street: "123 Main St",
+//     city: "New York",
+//   },
+// };
+
+// console.log(student.grades[0]);
+// console.log(student.adress.city);
+
+////////////////////////////////////////////////
+
+// const john = {
+//   firstName: "John",
+//   lastName: "Doe",
+//   birthYear: 1995,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriverLicense: true,
+
+//   calcAge : function (birthYear) {
+//     return 2025 - birthYear;
+//   }
+// };
+
+// console.log(john.calcAge(2000));
+
+// //'this' keyword
+// const johnImproved = {
+//   firstName: "John",
+//   lastName: "Doe",
+//   birthYear: 1995,
+//   job: "teacher",
+//   friends: ["Michael", "Peter", "Steven"],
+//   hasDriverLicense: true,
+
+//   calcAge: function () {
+//     this.age = 2025 - this.birthYear;
+//     return this.age;
+//   },
+//   getSummary: function() {
+//     return `${this.firstName} is a ${this.calcAge()} - years old ${this.job}, and he has ${this.hasDriverLicense ? 'a' : "no"} drivers license`;
+//   },
+// };
+
+// console.log(johnImproved.calcAge());
+// console.log(johnImproved.age);
+// console.log(johnImproved.getSummary());
+
+/////////////////////////////////////////////////////////////////////
+
+//Coding Challenge #3: User Profile Sysrtem
+
+const user = {
+  firstName: "Sarah",
+  lastName: "Johnson",
+  birthYear: 1995,
+  location: "New York",
+  interests: ["photography", "travel", "coding"],
+  friends: [
+    { name: "Michael", status: "active" },
+    { name: "Emma", status: "inactive" },
+    { name: "David", status: "active" },
+  ],
+  isActive: true,
+
+  // Calculate age method
+  calcAge: function () {
+    this.age = new Date().getFullYear() - this.birthYear;
+    return this.age;
+  },
+
+  // Add friend method
+  addFriend: function (name, status = "active") {
+    this.friends.push({ name, status });
+    return this.friends.length;
+  },
+
+  // Get active friends count
+  getActiveFriends: function () {
+    const activeFriends = this.friends.filter(friend => friend.status === "active");
+    return activeFriends.length;
+  },
+
+  // Toggle active status
+  toggleStatus: function () {
+    this.isActive = !this.isActive;
+    return this.isActive;
+  },
+
+  // Generate profile summary
+  getSummary: function () {
+    const age = this.calcAge();
+    const activeFriends = this.getActiveFriends();
+    const status = this.isActive ? "active" : "away";
+
+    return `${this.firstName} ${this.lastName} (${age}) from ${this.location} is currently ${status}.
+Has ${activeFriends} active friends out of ${this.friends.length} total.
+Interests include: ${this.interests.join(", ")} — connected and sharing life's adventures.`;
+  }
+};
+
+// Test your user profile system
+console.log(user.getSummary());
+user.addFriend("Alex", "active");
+user.toggleStatus();
+console.log(`\nAfter updates:`);
+console.log(user.getSummary());
