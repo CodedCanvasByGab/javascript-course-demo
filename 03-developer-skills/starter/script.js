@@ -302,6 +302,7 @@ console.log(amplitudeNew);
 console.log(
   'Problem-solving framework applied successfully to extended challenge!'
 );
+<<<<<<< HEAD
 
 ////////////////////////////////////
 // PROBLEM-SOLVING FRAMEWORK MASTERY
@@ -629,3 +630,5 @@ console.log('Systematic debugging process successfully applied!');
 console.log(
   'All bugs identified, isolated, investigated, fixed, and prevented'
 );
+=======
+>>>>>>> e61881b4a0185be27489aab0d500f62a6f6e34e6
