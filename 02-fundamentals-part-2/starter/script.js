@@ -543,3 +543,6 @@ input.addEventListener("keydown", function (event) {
     input.value = "";
   }
 });
+
+//////////////////////////////
+//Final Project: Interactive Score Tracker
