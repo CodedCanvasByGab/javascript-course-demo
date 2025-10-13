@@ -8,21 +8,18 @@ class Workout {
   clicks = 0;
 
   constructor(coords, distance, duration) {
-    //store the coordinates as an array of lat and long
-    this.coords = coords;
-    //srtore distance in kilometers
-    this.distance = distance;
-    //store duration in minutes
-    this.duration = duration;
+    this.coords = coords; // [lat, lng]
+    this.distance = distance; // in km
+    this.duration = duration; // in min
   }
 
-  //generate workout description
   _setDescription() {
     const months = [
       'January',
       'February',
       'March',
       'April',
+      'May',
       'June',
       'July',
       'August',
@@ -32,7 +29,6 @@ class Workout {
       'December',
     ];
 
-    //Generate description
     this.description = `${this.type[0].toUpperCase()}${this.type.slice(1)} on ${
       months[this.date.getMonth()]
     } ${this.date.getDate()}`;
@@ -42,9 +38,6 @@ class Workout {
     this.clicks++;
   }
 }
-
-const testWorkout = new Workout([40.7128, -74.006], 5.2, 24);
-console.log('Test workout: ', testWorkout);
 
 class Running extends Workout {
   type = 'running';
@@ -57,7 +50,6 @@ class Running extends Workout {
   }
 
   calcPace() {
-    // min/km
     this.pace = this.duration / this.distance;
     return this.pace;
   }
@@ -74,7 +66,6 @@ class Cycling extends Workout {
   }
 
   calcSpeed() {
-    //km/h
     this.speed = this.distance / (this.duration / 60);
     return this.speed;
   }
@@ -106,3 +97,82 @@ console.log(
   run1 instanceof Workout,
   cycling1 instanceof Workout
 );
+
+// ===== APP CLASS AND MAP LOADING =====
+
+class App {
+  #map;
+  #mapZoomLevel = 13;
+  #mapEvent;
+  #workouts = [];
+
+  constructor() {
+    console.log('App starting');
+    this._getPosition();
+  }
+
+  _getPosition() {
+    if (navigator.geolocation) {
+      console.log('🔍 Requesting user location...');
+      navigator.geolocation.getCurrentPosition(
+        this._loadMap.bind(this),
+        this._loadDefaultMap.bind(this),
+        {
+          timeout: 10000,
+          enableHighAccuracy: true,
+          maximumAge: 600000,
+        }
+      );
+    } else {
+      alert('❌ Geolocation is not supported by this browser');
+      this._loadDefaultMap();
+    }
+  }
+
+  _loadMap(position) {
+    const { latitude, longitude } = position.coords;
+    const coords = [latitude, longitude];
+    console.log(`Loading map at coordinates: ${latitude}, ${longitude}`);
+
+    this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(this.#map);
+
+    L.marker(coords).addTo(this.#map).bindPopup('You are here!').openPopup();
+
+    this.#map.on('click', this._onMapClick.bind(this));
+    console.log('Map loaded successfully at user location');
+  }
+
+  _loadDefaultMap() {
+    const defaultCoords = [14.604, 120.994];
+    console.log('Loading default map location around Manila');
+
+    this.#map = L.map('map').setView(defaultCoords, this.#mapZoomLevel);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(this.#map);
+
+    this.#map.on('click', this._onMapClick.bind(this));
+    console.log('Default Map Loaded Successfully');
+  }
+
+  _onMapClick(mapEvent) {
+    const { lat, lng } = mapEvent.latlng;
+    console.log(`Map clicked at: ${lat.toFixed(4)}, ${lng.toFixed(4)}`);
+
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        `Workout location<br>Lat: ${lat.toFixed(4)}, ${lng.toFixed(4)}`
+      )
+      .openPopup();
+  }
+}
+
+const app = new App();
